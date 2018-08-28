@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.feevale.peneirao.bd.BancoDados;
 import com.feevale.peneirao.bd.UsuarioBD;
 
 public class Login extends AppCompatActivity {
@@ -70,11 +71,11 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    public void onClickLogin(View v) {
+    public void onClickLogin(View v) throws Exception {
         String login = txtLogin.getText().toString();
         String senha = txtSenha.getText().toString();
-        UsuarioBD bd = new UsuarioBD(this);
-        Usuario usuario = bd.obter(login, senha);
+        BancoDados<Usuario> bd = new BancoDados<Usuario>(this, Usuario.class);
+        Usuario usuario = (Usuario)bd.obter("LOGIN = ? and SENHA = ?", new String[] { login, senha});
         if (usuario != null){
             alerta("Sucesso!");
         }

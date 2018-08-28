@@ -1,6 +1,11 @@
 package com.feevale.peneirao;
 
-public class Usuario {
+import android.content.ContentValues;
+import android.database.Cursor;
+
+import com.feevale.peneirao.bd.IPersistente;
+
+public class Usuario implements IPersistente {
     private int codigo;
     private String nome;
     private String login;
@@ -12,9 +17,11 @@ public class Usuario {
 
     }
 
+    @Override
     public int getCodigo() {
         return codigo;
     }
+    @Override
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
@@ -41,5 +48,56 @@ public class Usuario {
     }
     public void setClube(int clube) {
         this.clube = clube;
+    }
+
+    @Override
+    public String getNomeTabela(){ return "USUARIO"; }
+
+    @Override
+    public String getCreateTable() {
+        return "create table " + getNomeTabela() +
+                "( CODIGO integer primary key autoincrement," +
+                "NOME text not null," +
+                "LOGIN text not null unique," +
+                "SENHA text not null," +
+                "CLUBE integer not null)";
+    }
+
+    @Override
+    public ContentValues inserir() {
+        ContentValues valores = new ContentValues();
+        valores.put("NOME", getNome());
+        valores.put("LOGIN", getLogin());
+        valores.put("SENHA", getSenha());
+        valores.put("CLUBE", getClube());
+        return valores;
+    }
+
+    @Override
+    public ContentValues editar() {
+        ContentValues valores = new ContentValues();
+        valores.put("NOME", getNome());
+        valores.put("LOGIN", getLogin());
+        valores.put("SENHA", getSenha());
+        valores.put("CLUBE", getClube());
+        return valores;
+    }
+
+    @Override
+    public String[] colunas() {
+        String[] colunas = {"CODIGO", "NOME", "LOGIN", "SENHA", "CLUBE"};
+        return colunas;
+    }
+
+    @Override
+    public void carregar(Cursor pResultados) {
+        pResultados.moveToFirst();
+        if (pResultados.getCount() > 0) {
+            setNome(pResultados.getString(pResultados.getColumnIndex("NOME")));
+            setCodigo(pResultados.getInt(pResultados.getColumnIndex("CODIGO")));
+            setLogin(pResultados.getString(pResultados.getColumnIndex("LOGIN")));
+            setSenha(pResultados.getString(pResultados.getColumnIndex("SENHA")));
+            setClube(pResultados.getInt(pResultados.getColumnIndex("CLUBE")));
+        }
     }
 }

@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.feevale.peneirao.bd.BancoDados;
 import com.feevale.peneirao.bd.UsuarioBD;
 
 public class CadastrarUsuario extends AppCompatActivity {
@@ -26,12 +28,12 @@ public class CadastrarUsuario extends AppCompatActivity {
         txtSenha = (TextView)findViewById(R.id.txtSenha);
         btnRegistrar = (Button)findViewById(R.id.btnRegistrarUsuario);
     }
-    public void onClickRegistrar(View v) {
+    public void onClickRegistrar(View v) throws Exception {
         String nome = txtNome.getText().toString();
         String login = txtLogin.getText().toString();
         String senha = txtSenha.getText().toString();
         if (nome.length() != 0 && login.length() != 0 && senha.length() != 0){
-            UsuarioBD bd = new UsuarioBD(this);
+            BancoDados<Usuario> bd = new BancoDados<Usuario>(this, Usuario.class);
             Usuario usuario = new Usuario();
             usuario.setNome(nome);
             usuario.setLogin(login);
