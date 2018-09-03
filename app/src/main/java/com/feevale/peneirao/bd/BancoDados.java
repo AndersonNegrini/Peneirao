@@ -21,7 +21,7 @@ public class BancoDados<T extends IPersistente> {
         // TODO Auto-generated constructor stub
         this.ctx = ctx;
         this.tipoClasse = tipoClasse;
-        dbHelper = new DBHelper(ctx, "Peneirao", null, 14, criarInstancia());
+        dbHelper = new DBHelper(ctx, "Peneirao", null, 15, criarInstancia());
     }
 
     public BancoDados<T> abrir(){
@@ -110,14 +110,18 @@ public class BancoDados<T extends IPersistente> {
         public void onCreate(SQLiteDatabase db) {
             // TODO Auto-generated method stub
             Log.d("DATABASE","onCreate!");
-            db.execSQL(iPersistente.getCreateTable());
+            db.execSQL("create table USUARIO( CODIGO integer primary key autoincrement, NOME text not null, LOGIN text not null unique, SENHA text not null, CLUBE integer not null)");
+            db.execSQL("create table POSICAO (CODIGO integer primary key autoincrement, DESCRICAO text not null)");
+
+            //db.execSQL(iPersistente.getCreateTable());
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             // TODO Auto-generated method stub
             Log.d("DATABASE","onUpgrade!");
-            db.execSQL("DROP TABLE IF EXISTS " + iPersistente.getNomeTabela());
+            db.execSQL("DROP TABLE IF EXISTS USUARIO");
+            db.execSQL("DROP TABLE IF EXISTS POSICAO");
             onCreate(db);
         }
 
