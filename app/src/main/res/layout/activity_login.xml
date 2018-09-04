@@ -1,56 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".Login">
+    android:background="@color/colorBackgroundLogin"
+    tools:context=".Login" >
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Usuário"
-        tools:layout_editor_absoluteX="122dp"
-        tools:layout_editor_absoluteY="91dp" />
-
-    <EditText
-        android:id="@+id/txtUsuario"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/LinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Senha" />
+        <ImageView
+            android:id="@+id/overview_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:adjustViewBounds="true"
+            android:paddingBottom="10dp"
+            app:srcCompat="@drawable/fundo_header_login" />
 
-    <EditText
-        android:id="@+id/txtSenha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onClickLogin"
-        android:text="Entrar"
-        android:visibility="visible" />
+        <EditText
+            android:id="@+id/txtUsuario"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColorHint="@color/colorEditsLogin"
+            android:hint="@string/txtUsuario"
+            android:textColor="@color/colorEditsLogin"
+            android:textStyle="bold"
+            android:theme="@style/EditLoginTheme"
+            />
 
-    <Button
-        android:id="@+id/btnCadastrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onClickCadastrar"
-        android:text="Registrar" />
 
-</LinearLayout>
+
+        <EditText
+            android:id="@+id/txtSenha"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="@string/txtSenha"
+            android:textColorHint="@color/colorEditsLogin"
+            android:textColor="@color/colorEditsLogin"
+            android:inputType="textPassword"
+            android:theme="@style/EditLoginTheme"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:onClick="onClickLogin"
+            android:text="@string/title_activity_login"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/btnCadastrar"
+            android:layout_width="162dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:onClick="onClickCadastrar"
+            android:text="@string/action_sign_in"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            tools:foregroundTint="@color/colorPrimary" />
+
+
+    </LinearLayout>
+</ScrollView>
