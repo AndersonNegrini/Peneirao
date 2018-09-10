@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.feevale.peneirao.bd.BancoDados;
 
@@ -36,7 +37,11 @@ public class CadastrarUsuario extends AppCompatActivity {
             usuario.setNome(nome);
             usuario.setLogin(login);
             usuario.setSenha(senha);
-            bd.inserir(usuario);
+            int resultado = bd.inserir(usuario);
+            if (resultado == -1){
+                Toast.makeText(this, "Usuário já existe!", Toast.LENGTH_LONG).show();
+                return;
+            }
 
             Intent it = new Intent(this, Login.class);
             this.startActivity(it);
