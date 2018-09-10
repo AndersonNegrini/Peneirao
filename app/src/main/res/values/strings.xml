@@ -22,5 +22,8 @@
     </string>
     <string name="txtUsuario">User</string>
     <string name="txtSenha">Password</string>
+    <string name="lblMenuCadPosicao">Cadastro Posicao</string>
+
     <string name="title_activity_principal">Principal</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

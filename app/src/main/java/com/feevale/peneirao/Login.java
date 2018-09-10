@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.feevale.peneirao.bd.BancoDados;
 
+import java.util.Objects;
+
 public class Login extends AppCompatActivity {
     TextView txtLogin;
     TextView txtSenha;
@@ -19,7 +21,9 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Objects.requireNonNull(getSupportActionBar()).hide();
         setContentView(R.layout.activity_login);
+
 
         txtLogin = (TextView)findViewById(R.id.txtUsuario);
         txtSenha = (TextView)findViewById(R.id.txtSenha);
@@ -77,7 +81,7 @@ public class Login extends AppCompatActivity {
         Usuario usuario = (Usuario)bd.obter("LOGIN = ? and SENHA = ?", new String[] { login, senha});
         if (usuario != null){
             alerta("Sucesso!");
-            Intent it = new Intent(this, Principal.class);
+            Intent it = new Intent(this, MainActivity.class);
             this.startActivity(it);
         }
         else{
