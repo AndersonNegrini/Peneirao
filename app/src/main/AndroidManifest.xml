@@ -25,7 +25,10 @@
         <activity android:name=".CadastrarUsuario" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main"></activity>
+            android:label="@string/title_activity_main" />
+        <activity
+            android:name=".PosicaoActivity"
+            android:label="@string/title_activity_posicao"></activity>
     </application>
 
 </manifest>
