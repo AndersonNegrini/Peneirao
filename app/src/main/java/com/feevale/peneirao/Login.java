@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.feevale.peneirao.bd.BancoDados;
-import com.feevale.peneirao.bd.UsuarioBD;
 
 public class Login extends AppCompatActivity {
     TextView txtLogin;
@@ -78,6 +77,8 @@ public class Login extends AppCompatActivity {
         Usuario usuario = (Usuario)bd.obter("LOGIN = ? and SENHA = ?", new String[] { login, senha});
         if (usuario != null){
             alerta("Sucesso!");
+            Intent it = new Intent(this, Principal.class);
+            this.startActivity(it);
         }
         else{
             alerta("Usuário não encontrado.");

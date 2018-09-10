@@ -6,10 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.feevale.peneirao.bd.BancoDados;
-import com.feevale.peneirao.bd.UsuarioBD;
 
 public class CadastrarUsuario extends AppCompatActivity {
 

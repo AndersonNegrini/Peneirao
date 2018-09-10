@@ -22,4 +22,5 @@
     </string>
     <string name="txtUsuario">User</string>
     <string name="txtSenha">Password</string>
+    <string name="title_activity_principal">Principal</string>
 </resources>
