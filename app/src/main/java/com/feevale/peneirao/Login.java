@@ -80,7 +80,7 @@ public class Login extends AppCompatActivity {
         BancoDados<Usuario> bd =  new BancoDados<Usuario>(this, Usuario.class);
         Usuario usuario = (Usuario)bd.obter("LOGIN = ? and SENHA = ?", new String[] { login, senha});
         if (usuario != null){
-            alerta("Sucesso !");
+            alerta("Sucesso!");
             Intent it = new Intent(this, MainActivity.class);
             this.startActivity(it);
         }
