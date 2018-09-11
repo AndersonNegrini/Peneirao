@@ -25,6 +25,6 @@
     <string name="lblMenuCadPosicao">Cadastro Posicao</string>
 
     <string name="title_activity_principal">Principal</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_posicao">PosicaoActivity</string>
+    <string name="title_activity_main">Principal</string>
+    <string name="title_activity_posicao">Posição</string>
 </resources>
