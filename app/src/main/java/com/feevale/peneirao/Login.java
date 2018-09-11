@@ -77,10 +77,10 @@ public class Login extends AppCompatActivity {
     public void onClickLogin(View v) throws Exception {
         String login = txtLogin.getText().toString();
         String senha = txtSenha.getText().toString();
-        BancoDados<Usuario> bd = new BancoDados<Usuario>(this, Usuario.class);
+        BancoDados<Usuario> bd =  new BancoDados<Usuario>(this, Usuario.class);
         Usuario usuario = (Usuario)bd.obter("LOGIN = ? and SENHA = ?", new String[] { login, senha});
         if (usuario != null){
-            alerta("Sucesso!");
+            alerta("Sucesso !");
             Intent it = new Intent(this, MainActivity.class);
             this.startActivity(it);
         }
