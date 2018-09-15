@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.feevale.peneirao.Usuario;
-
 import java.util.ArrayList;
 
 public class BancoDados<T extends IPersistente> {
@@ -17,11 +15,15 @@ public class BancoDados<T extends IPersistente> {
     private SQLiteDatabase db;
     private Class<T> tipoClasse;
 
-    public BancoDados(Context ctx, Class<T> tipoClasse) throws Exception {
+    public BancoDados(Context ctx, Class<T> tipoClasse) {
         // TODO Auto-generated constructor stub
         this.ctx = ctx;
         this.tipoClasse = tipoClasse;
-        dbHelper = new DBHelper(ctx, "Peneirao", null, 15, criarInstancia());
+        try {
+            dbHelper = new DBHelper(ctx, "Peneirao", null, 17, criarInstancia());
+        }
+        catch(Exception ex) {
+        }
     }
 
     public BancoDados<T> abrir(){
@@ -33,65 +35,114 @@ public class BancoDados<T extends IPersistente> {
         db.close();
     }
 
-    private T criarInstancia() throws Exception  {
-        return tipoClasse.newInstance();
+    private T criarInstancia()  {
+        try {
+            return tipoClasse.newInstance();
+        }
+        catch (Exception ex){
+            return null;
+        }
     }
 
     public int inserir(T pPersistente){
         abrir();
         ContentValues valores = pPersistente.inserir();
         int resultado = (int) db.insert(pPersistente.getNomeTabela(), null, valores);
+        if (resultado > 0){
+            pPersistente.setCodigo(resultado);
+        }
         fechar();
         return resultado;
     }
 
-    public IPersistente obter(int pCodigo) throws Exception{
-        T persistente = criarInstancia();
-        Cursor resultados = db.query(persistente.getNomeTabela(), persistente.colunas(),
-                "Codigo = " + pCodigo, null, null, null, "CODIGO");
-        persistente.carregar(resultados);
-
-        return persistente;
-    }
-    public IPersistente obter(String pFiltro, String[] pValores) throws Exception{
-        abrir();
-        T persistente = criarInstancia();
-        Cursor resultados = db.query(persistente.getNomeTabela(), persistente.colunas(),
-                pFiltro, pValores, null, null, "CODIGO");
-        persistente.carregar(resultados);
-        fechar();
-        return persistente.getCodigo() != 0 ? persistente : null;
-    }
-    public ArrayList<T> obter() throws Exception {
-
-        ArrayList<T> lista = new ArrayList<T>();
-        T persistente = criarInstancia();
-        Cursor resultados = db.query(persistente.getNomeTabela(), persistente.colunas(), null, null, null, null, "CODIGO");
-        if(resultados.getCount() > 0){
-            resultados.moveToFirst();
-            do{
-                persistente = criarInstancia();
+    public IPersistente obter(int pCodigo){
+        try {
+            abrir();
+            T persistente = criarInstancia();
+            Cursor resultados = db.query(persistente.getNomeTabela(), persistente.colunas(),
+                    "CODIGO = " + pCodigo, null, null, null, "CODIGO");
+            if (resultados != null && resultados.getCount() > 0) {
+                resultados.moveToFirst();
                 persistente.carregar(resultados);
-
-                lista.add(persistente);
-            }while(resultados.moveToNext());
+            }
+            fechar();
+            return persistente;
         }
+        catch (Exception ex){
+            return null;
+        }
+    }
+    public IPersistente obter(String pFiltro, String[] pValores){
+        try {
+            abrir();
+            T persistente = criarInstancia();
+            Cursor resultados = db.query(persistente.getNomeTabela(), persistente.colunas(),
+                    pFiltro, pValores, null, null, "CODIGO");
+            if (resultados != null && resultados.getCount() > 0) {
+                resultados.moveToFirst();
+                persistente.carregar(resultados);
+            }
+            fechar();
+            return persistente.getCodigo() != 0 ? persistente : null;
+        }
+        catch (Exception ex) {
+            return null;
+        }
+    }
+    public ArrayList<T> obter() {
+        try {
+            abrir();
+            ArrayList<T> lista = new ArrayList<T>();
+            T persistente = criarInstancia();
+            Cursor resultados = db.query(persistente.getNomeTabela(), persistente.colunas(), null, null, null, null, "CODIGO");
+            if (resultados != null && resultados.getCount() > 0) {
+                resultados.moveToFirst();
+                do {
+                    persistente = criarInstancia();
+                    persistente.carregar(resultados);
 
-        return lista;
+                    lista.add(persistente);
+                } while (resultados.moveToNext());
+            }
+            fechar();
+            return lista;
+        }
+        catch (Exception ex) {
+            return null;
+        }
     }
 
-    public int editar(int pCodigo, T pPersistente){
-        return db.update(pPersistente.getNomeTabela(), pPersistente.editar(), "CODIGO = " + pCodigo, null);
+    public int editar(T pPersistente){
+        abrir();
+        int result = db.update(pPersistente.getNomeTabela(), pPersistente.editar(), "CODIGO = " + pPersistente.getCodigo(), null);
+        fechar();
+        return result;
     }
 
-    public int removerTodos() throws Exception {
-        T persistente = criarInstancia();
-        return db.delete(persistente.getNomeTabela(), null, null);
+    public int removerTodos() {
+        try {
+            abrir();
+            T persistente = criarInstancia();
+            int result = db.delete(persistente.getNomeTabela(), null, null);
+            fechar();
+            return result;
+        }
+        catch (Exception ex) {
+            return -1;
+        }
     }
 
-    public int remover(int pCodigo) throws Exception {
-        T persistente = criarInstancia();
-        return db.delete(persistente.getNomeTabela(), "CODIGO = " + pCodigo, null);
+    public int remover(int pCodigo) {
+        try {
+            abrir();
+            T persistente = criarInstancia();
+            int result = db.delete(persistente.getNomeTabela(), "CODIGO = " + pCodigo, null);
+            fechar();
+            return result;
+        }
+        catch (Exception ex) {
+            return -1;
+        }
     }
 
     private static class DBHelper extends SQLiteOpenHelper {

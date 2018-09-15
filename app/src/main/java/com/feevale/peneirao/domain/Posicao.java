@@ -1,7 +1,9 @@
-package com.feevale.peneirao.bd;
+package com.feevale.peneirao.domain;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+
+import com.feevale.peneirao.bd.IPersistente;
 
 public class Posicao implements IPersistente {
     private int codigo;
@@ -33,8 +35,7 @@ public class Posicao implements IPersistente {
 
     @Override
     public void carregar(Cursor pResultados) {
-        pResultados.moveToFirst();
-        if (pResultados.getCount() > 0) {
+        if (pResultados != null) {
             setCodigo(pResultados.getInt(pResultados.getColumnIndex("CODIGO")));
             setDescricao(pResultados.getString(pResultados.getColumnIndex("DESCRICAO")));
         }

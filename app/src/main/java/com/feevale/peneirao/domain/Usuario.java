@@ -1,4 +1,4 @@
-package com.feevale.peneirao;
+package com.feevale.peneirao.domain;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -91,8 +91,7 @@ public class Usuario implements IPersistente {
 
     @Override
     public void carregar(Cursor pResultados) {
-        pResultados.moveToFirst();
-        if (pResultados.getCount() > 0) {
+        if (pResultados != null) {
             setNome(pResultados.getString(pResultados.getColumnIndex("NOME")));
             setCodigo(pResultados.getInt(pResultados.getColumnIndex("CODIGO")));
             setLogin(pResultados.getString(pResultados.getColumnIndex("LOGIN")));

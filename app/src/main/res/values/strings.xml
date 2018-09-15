@@ -22,9 +22,12 @@
     </string>
     <string name="txtUsuario">User</string>
     <string name="txtSenha">Password</string>
-    <string name="lblMenuCadPosicao">Cadastro Posicao</string>
+
+    <string name="lblMenuPosicoes">Posições</string>
+    <string name="lblMenuCadPosicao">Cadastro Posição</string>
 
     <string name="title_activity_principal">Principal</string>
     <string name="title_activity_main">Principal</string>
     <string name="title_activity_posicao">Posição</string>
+    <string name="title_activity_cadastrar_posicao">CadastrarPosicao</string>
 </resources>

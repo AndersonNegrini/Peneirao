@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.feevale.peneirao.bd.BancoDados;
+import com.feevale.peneirao.domain.Usuario;
 
 public class CadastrarUsuario extends AppCompatActivity {
 
@@ -43,6 +44,7 @@ public class CadastrarUsuario extends AppCompatActivity {
                 return;
             }
 
+            finish();
             Intent it = new Intent(this, Login.class);
             this.startActivity(it);
         }

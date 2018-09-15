@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.feevale.peneirao.bd.BancoDados;
+import com.feevale.peneirao.domain.Usuario;
 
 import java.util.Objects;
 

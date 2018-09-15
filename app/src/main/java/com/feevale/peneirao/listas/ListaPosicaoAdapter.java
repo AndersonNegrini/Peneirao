@@ -1,4 +1,4 @@
-package com.feevale.peneirao;
+package com.feevale.peneirao.listas;
 
 import java.util.ArrayList;
 import android.content.Context;
@@ -8,7 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.feevale.peneirao.bd.Posicao;
+import com.feevale.peneirao.R;
+import com.feevale.peneirao.domain.Posicao;
 
 public class ListaPosicaoAdapter extends BaseAdapter{
     Context ctx;
