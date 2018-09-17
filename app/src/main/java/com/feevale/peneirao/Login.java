@@ -84,6 +84,8 @@ public class Login extends AppCompatActivity {
             alerta("Sucesso!");
             Intent it = new Intent(this, MainActivity.class);
             this.startActivity(it);
+            txtLogin.setText("");
+            txtSenha.setText("");
         }
         else{
             alerta("Usuário não encontrado.");

@@ -41,11 +41,13 @@ public class CadastrarPosicao extends Activity {
                 bd.editar(posicao);
             }
             else {
-                bd.inserir(posicao);
+                int resultado = bd.inserir(posicao);
+                if (resultado == -1){
+                    Toast.makeText(this, "Posição já existe!", Toast.LENGTH_LONG).show();
+                    return;
+                }
             }
             finish();
-            Intent it = new Intent(this, PosicaoActivity.class);
-            this.startActivity(it);
         }
         else{
             Toast.makeText(this, "Informe uma posição.", Toast.LENGTH_LONG).show();

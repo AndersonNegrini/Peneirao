@@ -24,8 +24,8 @@ import java.util.ArrayList;
 public class PosicaoActivity extends AppCompatActivity /*implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener*/ {
 
     ListView listViewPosicoes;
-    ArrayList<Posicao> listaPosicoes;
     final AppCompatActivity self = this;
+    ListaPosicaoAdapter adaptador;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +34,8 @@ public class PosicaoActivity extends AppCompatActivity /*implements AdapterView.
         listViewPosicoes = (ListView) findViewById(R.id.lstPosicoes);
 
         BancoDados<Posicao> bd =  new BancoDados<Posicao>(this, Posicao.class);
-        listaPosicoes = bd.obter();
 
-        ListaPosicaoAdapter adaptador = new ListaPosicaoAdapter(getBaseContext(), listaPosicoes);
+        adaptador = new ListaPosicaoAdapter(getBaseContext(), bd);
         listViewPosicoes.setAdapter(adaptador);
         registerForContextMenu(listViewPosicoes);
 
@@ -45,7 +44,8 @@ public class PosicaoActivity extends AppCompatActivity /*implements AdapterView.
             @Override
             public void onClick(View view) {
                 Intent it = new Intent(self, CadastrarPosicao.class);
-                self.startActivity(it);
+                self.startActivityForResult(it, 1);
+                adaptador.notifyDataSetChanged();
             }
         });
     }
@@ -54,7 +54,7 @@ public class PosicaoActivity extends AppCompatActivity /*implements AdapterView.
                                     ContextMenu.ContextMenuInfo menuInfo) {
         if (v.getId()==R.id.lstPosicoes) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
-            menu.setHeaderTitle(listaPosicoes.get(info.position).getDescricao());
+            menu.setHeaderTitle(((Posicao)adaptador.getItem(info.position)).getDescricao());
             menu.add(Menu.NONE, 1, 1, "Editar");
             menu.add(Menu.NONE, 2, 2, "Deletar");
         }
@@ -63,21 +63,20 @@ public class PosicaoActivity extends AppCompatActivity /*implements AdapterView.
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        Posicao posicao = listaPosicoes.get(info.position);
+        Posicao posicao = ((Posicao)adaptador.getItem(info.position));
         switch(item.getItemId()) {
             case 1:
                 // Editar
                 Intent it = new Intent(getBaseContext(), CadastrarPosicao.class);
                 it.putExtra("CODIGO", posicao.getCodigo());
-                finish();
-                startActivity(it);
+                startActivityForResult(it, 1010);
+                adaptador.notifyDataSetChanged();
                 return true;
             case 2:
                 // Excluir
                 BancoDados<Posicao> bd =  new BancoDados<Posicao>(this, Posicao.class);
                 bd.remover(posicao.getCodigo());
-                finish();
-                startActivity(getIntent());
+                adaptador.notifyDataSetChanged();
                 return true;
             default:
                 return super.onContextItemSelected(item);
