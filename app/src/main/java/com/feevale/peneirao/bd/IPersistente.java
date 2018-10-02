@@ -12,5 +12,4 @@ public interface IPersistente {
     int getCodigo();
     void setCodigo(int codigo);
     String getNomeTabela();
-    String getCreateTable();
 }

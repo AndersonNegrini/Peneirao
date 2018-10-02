@@ -8,4 +8,10 @@
         android:title="@string/lblMenuPosicoes"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/btnClubes"
+        android:orderInCategory="100"
+        android:title="Clubes"
+        app:showAsAction="never" />
+
 </menu>
