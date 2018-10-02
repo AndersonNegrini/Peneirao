@@ -6,12 +6,12 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_login">Login</string>
+    <string name="title_activity_login">Entrar</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in">Cadastrar usuário</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
@@ -20,11 +20,20 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="txtUsuario">User</string>
-    <string name="txtSenha">Password</string>
+
+    <string name="txtNome">Nome</string>
+    <string name="txtUsuario">Usuário</string>
+    <string name="txtSenha">Senha</string>
+    <string name="txtNovaPosicao">Descrição da posição</string>
+
 
     <string name="lblMenuPosicoes">Posições</string>
     <string name="lblMenuCadPosicao">Cadastro Posição</string>
+
+    <string name="btnSalvar">Salvar</string>
+
+
+
 
     <string name="title_activity_principal">Principal</string>
     <string name="title_activity_main">Principal</string>

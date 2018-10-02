@@ -3,10 +3,12 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorBackground</item>
+        <item name="colorPrimaryDark">@color/colorBackground</item>
+        <item name="colorAccent">@color/colorBtnSave</item>
     </style>
+
+
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -20,6 +22,16 @@
     <style name="EditLoginTheme">
         <item name="colorControlNormal">#ffffff</item>
         <item name="colorControlActivated">#0081fa</item>
+    </style>
+
+    <style name="EditCrudTheme">
+        <item name="colorControlNormal">#ffffff</item>
+        <item name="colorControlActivated">#0081fa</item>
+    </style>
+
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorBtnSave</item>
+        <item name="android:textColor">@color/colorEdit</item>
     </style>
 
 </resources>

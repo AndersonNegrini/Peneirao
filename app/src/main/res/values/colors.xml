@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorBackgroundLogin">#000000</color>
     <color name="colorEditsLogin">#ffffff</color>
+
+    <color name="colorBackground">#000000</color>
+    <color name="colorEdit">#ffffff</color>
+    <color name="colorBtnSave">#2196f3</color>
+    <color name="colorBtnLogin">#2196f3</color>
 </resources>

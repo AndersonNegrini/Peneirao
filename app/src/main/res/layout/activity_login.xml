@@ -60,7 +60,8 @@
             android:layout_marginTop="10dp"
             android:onClick="onClickLogin"
             android:text="@string/title_activity_login"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:theme="@style/AppTheme.Button"/>
 
         <Button
             android:id="@+id/btnCadastrar"
@@ -71,7 +72,7 @@
             android:onClick="onClickCadastrar"
             android:text="@string/action_sign_in"
             android:textAppearance="@style/TextAppearance.AppCompat"
-            tools:foregroundTint="@color/colorPrimary" />
+            android:colorButtonNormal="@color/colorEditsLogin"/>
 
 
     </LinearLayout>
