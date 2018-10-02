@@ -51,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
             this.startActivity(it);
             return true;
         }
+        else if (id == R.id.btnClubes){
+            Intent it = new Intent(this, ClubeActivity.class);
+            this.startActivity(it);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

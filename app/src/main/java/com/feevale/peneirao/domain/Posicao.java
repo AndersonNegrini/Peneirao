@@ -56,13 +56,6 @@ public class Posicao implements IPersistente {
         return "POSICAO";
     }
 
-    @Override
-    public String getCreateTable() {
-        return "create table " + getNomeTabela() +
-                "( CODIGO integer primary key autoincrement," +
-                "DESCRICAO text not null)";
-    }
-
     public String getDescricao() {
         return descricao;
     }

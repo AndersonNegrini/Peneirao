@@ -54,16 +54,6 @@ public class Usuario implements IPersistente {
     public String getNomeTabela(){ return "USUARIO"; }
 
     @Override
-    public String getCreateTable() {
-        return "create table " + getNomeTabela() +
-                "( CODIGO integer primary key autoincrement," +
-                "NOME text not null," +
-                "LOGIN text not null unique," +
-                "SENHA text not null," +
-                "CLUBE integer not null)";
-    }
-
-    @Override
     public ContentValues inserir() {
         ContentValues valores = new ContentValues();
         valores.put("NOME", getNome());

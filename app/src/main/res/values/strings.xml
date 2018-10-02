@@ -30,4 +30,6 @@
     <string name="title_activity_main">Principal</string>
     <string name="title_activity_posicao">Posição</string>
     <string name="title_activity_cadastrar_posicao">CadastrarPosicao</string>
+    <string name="title_activity_clube">ClubeActivity</string>
+    <string name="title_activity_cadastrar_clube">CadastrarClube</string>
 </resources>
