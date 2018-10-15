@@ -56,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
             this.startActivity(it);
             return true;
         }
+        else if (id == R.id.btnAvaliacoes){
+            Intent it = new Intent(this, AvaliacaoActivity.class);
+            this.startActivity(it);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

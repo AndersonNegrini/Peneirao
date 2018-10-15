@@ -14,4 +14,10 @@
         android:title="Clubes"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/btnAvaliacoes"
+        android:orderInCategory="100"
+        android:title="Avaliações"
+        app:showAsAction="never" />
+
 </menu>

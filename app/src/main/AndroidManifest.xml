@@ -39,6 +39,12 @@
         <activity
             android:name=".CadastrarClube"
             android:label="@string/title_activity_cadastrar_clube"></activity>
+        <activity
+            android:name=".AvaliacaoActivity"
+            android:label="Avaliação"></activity>
+        <activity
+            android:name=".CadastrarAvaliacao"
+            android:label="Cadastrar Avaliação"></activity>
     </application>
 
 </manifest>

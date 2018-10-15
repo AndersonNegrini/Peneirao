@@ -42,6 +42,7 @@ public class CadastrarClube  extends Activity {
             clube = (Clube) bd.obter(codigo);
             txtViewNome.setText(clube.getNome());
             txtViewAbreviacao.setText(clube.getAbreviacao());
+            imgViewImagem.setImageBitmap(clube.getImagem());
         }
         else{
             clube = new Clube();

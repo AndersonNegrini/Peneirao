@@ -20,7 +20,7 @@ public class BancoDados<T extends IPersistente> {
         this.ctx = ctx;
         this.tipoClasse = tipoClasse;
         try {
-            dbHelper = new DBHelper(ctx, "Peneirao", null, 20, criarInstancia());
+            dbHelper = new DBHelper(ctx, "Peneirao", null, 22, criarInstancia());
         }
         catch(Exception ex) {
         }
@@ -63,7 +63,7 @@ public class BancoDados<T extends IPersistente> {
                     "CODIGO = " + pCodigo, null, null, null, "CODIGO");
             if (resultados != null && resultados.getCount() > 0) {
                 resultados.moveToFirst();
-                persistente.carregar(resultados);
+                persistente.carregar(resultados, ctx);
             }
             fechar();
             return persistente;
@@ -80,7 +80,7 @@ public class BancoDados<T extends IPersistente> {
                     pFiltro, pValores, null, null, "CODIGO");
             if (resultados != null && resultados.getCount() > 0) {
                 resultados.moveToFirst();
-                persistente.carregar(resultados);
+                persistente.carregar(resultados, ctx);
             }
             fechar();
             return persistente.getCodigo() != 0 ? persistente : null;
@@ -99,7 +99,7 @@ public class BancoDados<T extends IPersistente> {
                 resultados.moveToFirst();
                 do {
                     persistente = criarInstancia();
-                    persistente.carregar(resultados);
+                    persistente.carregar(resultados, ctx);
 
                     lista.add(persistente);
                 } while (resultados.moveToNext());
@@ -164,6 +164,7 @@ public class BancoDados<T extends IPersistente> {
             db.execSQL("create table USUARIO( CODIGO integer primary key autoincrement, NOME text not null, LOGIN text not null unique, SENHA text not null, CLUBE integer not null)");
             db.execSQL("create table POSICAO (CODIGO integer primary key autoincrement, DESCRICAO text not null unique)");
             db.execSQL("create table CLUBE (CODIGO integer primary key autoincrement, NOME text not null unique, ABREVIACAO text not null unique, IMAGEM blob)");
+            db.execSQL("create table AVALIACAO (CODIGO integer primary key autoincrement, DESCRICAO text not null unique, POSICAO integer not null, FOREIGN KEY(POSICAO) REFERENCES POSICAO(CODIGO))");
         }
 
         @Override
@@ -173,6 +174,7 @@ public class BancoDados<T extends IPersistente> {
             db.execSQL("DROP TABLE IF EXISTS USUARIO");
             db.execSQL("DROP TABLE IF EXISTS POSICAO");
             db.execSQL("DROP TABLE IF EXISTS CLUBE");
+            db.execSQL("DROP TABLE IF EXISTS AVALIACAO");
             onCreate(db);
         }
 

@@ -1,6 +1,7 @@
 package com.feevale.peneirao.domain;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -45,7 +46,7 @@ public class Clube implements IPersistente {
     }
 
     @Override
-    public void carregar(Cursor pResultados) {
+    public void carregar(Cursor pResultados, Context pContext) {
         if (pResultados != null) {
             setCodigo(pResultados.getInt(pResultados.getColumnIndex("CODIGO")));
             setNome(pResultados.getString(pResultados.getColumnIndex("NOME")));

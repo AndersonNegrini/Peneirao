@@ -4,13 +4,15 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.feevale.peneirao.bd.BancoDados;
 import com.feevale.peneirao.bd.IPersistente;
 
-public class Posicao implements IPersistente {
+public class Avaliacao implements IPersistente {
     private int codigo;
     private String descricao;
+    private Posicao posicao;
 
-    public Posicao(){
+    public Avaliacao(){
 
     }
 
@@ -18,6 +20,7 @@ public class Posicao implements IPersistente {
     public ContentValues inserir() {
         ContentValues valores = new ContentValues();
         valores.put("DESCRICAO", getDescricao());
+        valores.put("POSICAO", posicao != null ? posicao.getCodigo() : null);
         return valores;
     }
 
@@ -25,12 +28,13 @@ public class Posicao implements IPersistente {
     public ContentValues editar() {
         ContentValues valores = new ContentValues();
         valores.put("DESCRICAO", getDescricao());
+        valores.put("POSICAO", posicao != null ? posicao.getCodigo() : null);
         return valores;
     }
 
     @Override
     public String[] colunas() {
-        String[] colunas = {"CODIGO", "DESCRICAO"};
+        String[] colunas = {"CODIGO", "DESCRICAO", "POSICAO"};
         return colunas;
     }
 
@@ -39,6 +43,10 @@ public class Posicao implements IPersistente {
         if (pResultados != null) {
             setCodigo(pResultados.getInt(pResultados.getColumnIndex("CODIGO")));
             setDescricao(pResultados.getString(pResultados.getColumnIndex("DESCRICAO")));
+            int codigoPosicao = pResultados.getInt(pResultados.getColumnIndex("POSICAO"));
+            BancoDados<Posicao> bd = new BancoDados<Posicao>(pContext, Posicao.class);
+            IPersistente p = bd.obter(codigoPosicao);
+            setPosicao(p != null ? (Posicao)p : null);
         }
     }
 
@@ -46,7 +54,6 @@ public class Posicao implements IPersistente {
     public int getCodigo() {
         return codigo;
     }
-
     @Override
     public void setCodigo(int codigo) {
         this.codigo = codigo;
@@ -54,19 +61,20 @@ public class Posicao implements IPersistente {
 
     @Override
     public String getNomeTabela() {
-        return "POSICAO";
+        return "AVALIACAO";
     }
 
     public String getDescricao() {
         return descricao;
     }
-
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
-    @Override
-    public String toString() {
-        return getDescricao();
+    public Posicao getPosicao() {
+        return posicao;
+    }
+    public void setPosicao(Posicao posicao) {
+        this.posicao = posicao;
     }
 }

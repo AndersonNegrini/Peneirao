@@ -32,7 +32,7 @@ public class CadastrarPosicao extends Activity {
             posicao = new Posicao();
         }
     }
-    public void onClickConfirmar(View v) {
+    public void onClickConfirmarPosicao(View v) {
         String txtPosicao = txtViewPosicao.getText().toString();
         if (txtPosicao.length() != 0){
             BancoDados<Posicao> bd = new BancoDados<Posicao>(this, Posicao.class);

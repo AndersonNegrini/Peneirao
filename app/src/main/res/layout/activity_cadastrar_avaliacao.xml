@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackgroundLogin"
-    tools:context=".CadastrarPosicao" >
+    tools:context=".CadastrarAvaliacao" >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -27,11 +27,11 @@
             android:src="@drawable/fundo_header_posicao" />
 
         <EditText
-            android:id="@+id/txtPosicao"
+            android:id="@+id/txtCadAvaliacao"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:hint="@string/txtNovaPosicao"
+            android:hint="@string/txtNovaAvaliacao"
             android:paddingTop="20dp"
             android:textColor="@color/colorEdit"
             android:textColorHint="@color/colorEdit"
@@ -39,13 +39,19 @@
             android:theme="@style/EditCrudTheme" />
 
 
+        <Spinner
+            android:id="@+id/cbAvPosicao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Posição"/>
+
         <Button
-            android:id="@+id/btnCadSalvarPosicao"
+            android:id="@+id/btnCadAvaliacao"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:onClick="onClickConfirmarPosicao"
+            android:onClick="onClickConfirmar"
             android:text="@string/btnSalvar"
             android:visibility="visible"
             android:theme="@style/AppTheme.Button"/>

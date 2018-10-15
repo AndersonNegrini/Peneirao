@@ -25,6 +25,7 @@
     <string name="txtUsuario">Usuário</string>
     <string name="txtSenha">Senha</string>
     <string name="txtNovaPosicao">Descrição da posição</string>
+    <string name="txtNovaAvaliacao">Descrição da avaliação</string>
 
 
     <string name="lblMenuPosicoes">Posições</string>
@@ -39,6 +40,6 @@
     <string name="title_activity_main">Principal</string>
     <string name="title_activity_posicao">Posição</string>
     <string name="title_activity_cadastrar_posicao">CadastrarPosicao</string>
-    <string name="title_activity_clube">ClubeActivity</string>
+    <string name="title_activity_clube">Clubes</string>
     <string name="title_activity_cadastrar_clube">CadastrarClube</string>
 </resources>
