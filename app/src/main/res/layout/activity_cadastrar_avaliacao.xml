@@ -24,7 +24,7 @@
             android:adjustViewBounds="true"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
-            android:src="@drawable/fundo_header_posicao" />
+            android:src="@drawable/fundo_header_avaliacao" />
 
         <EditText
             android:id="@+id/txtCadAvaliacao"
@@ -38,12 +38,11 @@
             android:textStyle="normal"
             android:theme="@style/EditCrudTheme" />
 
-
         <Spinner
             android:id="@+id/cbAvPosicao"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="Posição"/>
+            android:paddingTop="20dp" />
 
         <Button
             android:id="@+id/btnCadAvaliacao"
@@ -53,8 +52,8 @@
             android:layout_marginTop="10dp"
             android:onClick="onClickConfirmar"
             android:text="@string/btnSalvar"
-            android:visibility="visible"
-            android:theme="@style/AppTheme.Button"/>
+            android:theme="@style/AppTheme.Button"
+            android:visibility="visible" />
 
 
     </LinearLayout>

@@ -25,8 +25,9 @@ public class CadastrarAvaliacao extends Activity {
         txtViewAvaliacao = (TextView)findViewById(R.id.txtCadAvaliacao);
 
         cbPosicao = (Spinner)findViewById(R.id.cbAvPosicao);
+
         BancoDados<Posicao> bdPosicao = new BancoDados<Posicao>(this, Posicao.class);
-        ArrayAdapter adp = new ArrayAdapter<Posicao>(this, android.R.layout.simple_spinner_item, bdPosicao.obter());
+        ArrayAdapter adp = new ArrayAdapter<Posicao>(this, R.layout.spinner_posicao, bdPosicao.obter());
         adp.setDropDownViewResource(android.R.layout.simple_spinner_item);
         cbPosicao.setAdapter(adp);
 
