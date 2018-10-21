@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".PosicaoActivity">
+    tools:context=".PosicaoActivity"
+    android:background="@color/colorBackgroundLogin">
 
     <include layout="@layout/content_posicao"/>
 

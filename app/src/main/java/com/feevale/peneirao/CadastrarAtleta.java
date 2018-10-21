@@ -62,7 +62,7 @@ public class CadastrarAtleta extends Activity {
             BancoDados<Atleta> bd = new BancoDados<Atleta>(this, Atleta.class);
             atleta = (Atleta) bd.obter(codigo);
             txtViewNomeAtleta.setText(atleta.getNome());
-            txtViewAnoNascimentoAtleta.setText(atleta.getAnoNascimento());
+           // txtViewAnoNascimentoAtleta.setText(atleta.getAnoNascimento());
             txtViewProsAtleta.setText(atleta.getPros());
             txtViewContraAtleta.setText(atleta.getContra());
             txtViewTelefoneAtleta.setText(atleta.getTelefone());

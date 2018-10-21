@@ -42,7 +42,8 @@
             android:id="@+id/cbCadPosicaoAtleta"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp" />
+            android:paddingTop="20dp"
+            android:theme="@style/EditCrudTheme" />
 
         <EditText
             android:id="@+id/txtCadAnoNascimentoAtleta"
@@ -52,7 +53,8 @@
             android:hint="Ano de Nascimento"
             android:inputType="number"
             android:textColor="@color/colorEdit"
-            android:textColorHint="@color/colorEdit" />
+            android:textColorHint="@color/colorEdit"
+            android:theme="@style/EditCrudTheme"/>
 
         <Spinner
             android:id="@+id/cbCadLateralidadeAtleta"
@@ -68,7 +70,8 @@
             android:hint="Prós"
             android:inputType="textMultiLine"
             android:textColor="@color/colorEdit"
-            android:textColorHint="@color/colorEdit"/>
+            android:textColorHint="@color/colorEdit"
+            android:theme="@style/EditCrudTheme"/>
 
         <EditText
             android:id="@+id/txtCadContraAtleta"
@@ -78,7 +81,8 @@
             android:hint="Contras"
             android:inputType="textMultiLine"
             android:textColor="@color/colorEdit"
-            android:textColorHint="@color/colorEdit"/>
+            android:textColorHint="@color/colorEdit"
+            android:theme="@style/EditCrudTheme"/>
 
         <EditText
             android:id="@+id/txtCadTelefoneAtleta"
@@ -88,7 +92,8 @@
             android:hint="Telefone"
             android:textColor="@color/colorEdit"
             android:textColorHint="@color/colorEdit"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:theme="@style/EditCrudTheme"/>
 
         <Button
             android:id="@+id/btnCadAtleta"
@@ -99,7 +104,8 @@
             android:onClick="onClickConfirmar"
             android:text="@string/btnSalvar"
             android:theme="@style/AppTheme.Button"
-            android:visibility="visible" />
+            android:visibility="visible"
+            />
 
 
     </LinearLayout>

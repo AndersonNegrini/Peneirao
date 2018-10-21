@@ -1,58 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".CadastrarClube">
+    android:background="@color/colorBackgroundLogin"
+    tools:context=".CadastrarClube" >
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Clube" />
-
-    <EditText
-        android:id="@+id/txtNomeClube"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/LinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".CadastrarClube">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Abreviação" />
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/fundo_header_clube" />
 
-    <EditText
-        android:id="@+id/txtAbreviacaoClube"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:maxLength="3" />
 
-    <ImageView
-        android:id="@+id/imgClube"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/sym_def_app_icon" />
+        <ImageView
+            android:id="@+id/imgClube"
+            android:layout_width="match_parent"
+            android:layout_height="83dp"
+            android:onClick="onClickCarregarImagem"
+            android:src="@drawable/logo_padrao" />
 
-    <Button
-        android:id="@+id/btnCarregarImagemClube"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onClickCarregarImagem"
-        android:text="Carregar" />
+        <EditText
+            android:id="@+id/txtNomeClube"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="@string/txtClube"
+            android:inputType="textPersonName"
+            android:paddingTop="20dp"
+            android:textColor="@color/colorEdit"
+            android:textColorHint="@color/colorEdit"
+            android:textStyle="normal"
+            android:theme="@style/EditCrudTheme" />
 
-    <Button
-        android:id="@+id/btnRegistrarUsuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onClickCadastrarClube"
-        android:text="Confirmar" />
-</LinearLayout>
+        <EditText
+            android:id="@+id/txtAbreviacaoClube"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="@string/txtAbrevClube"
+            android:paddingTop="20dp"
+            android:textColor="@color/colorEdit"
+            android:textColorHint="@color/colorEdit"
+            android:textStyle="normal"
+            android:theme="@style/EditCrudTheme"
+            android:inputType="textPersonName"
+            android:maxLength="3" />
+
+        <Button
+            android:id="@+id/btnRegistrarUsuario"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:onClick="onClickCadastrarClube"
+            android:text="@string/btnSalvar"
+            android:visibility="visible"
+            android:theme="@style/AppTheme.Button"/>
+
+        <Button
+            android:id="@+id/btnCarregarImagemClube"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickCarregarImagem"
+            android:text="Carregar"
+            android:visibility="invisible" />
+    </LinearLayout>
+</ScrollView>

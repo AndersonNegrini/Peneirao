@@ -27,7 +27,8 @@
     <string name="txtNovaPosicao">Descrição da posição</string>
     <string name="txtNovaAvaliacao">Descrição da avaliação</string>
     <string name="txtNomeAtleta">Nome do atleta</string>
-
+    <string name="txtClube">Clube</string>
+    <string name="txtAbrevClube">Abreviação</string>
 
     <string name="lblMenuPosicoes">Posições</string>
     <string name="lblMenuCadPosicao">Cadastro Posição</string>
