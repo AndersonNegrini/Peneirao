@@ -26,6 +26,7 @@
     <string name="txtSenha">Senha</string>
     <string name="txtNovaPosicao">Descrição da posição</string>
     <string name="txtNovaAvaliacao">Descrição da avaliação</string>
+    <string name="txtNomeAtleta">Nome do atleta</string>
 
 
     <string name="lblMenuPosicoes">Posições</string>

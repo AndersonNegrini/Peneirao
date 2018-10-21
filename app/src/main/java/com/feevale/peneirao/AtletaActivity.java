@@ -12,32 +12,31 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.feevale.peneirao.bd.BancoDados;
-import com.feevale.peneirao.domain.Avaliacao;
-import com.feevale.peneirao.listas.ListaAvaliacaoAdapter;
+import com.feevale.peneirao.domain.Atleta;
+import com.feevale.peneirao.listas.ListaAtletaAdapter;
 
-public class AvaliacaoActivity extends AppCompatActivity {
+public class AtletaActivity extends AppCompatActivity {
 
-    ListView listViewAvaliacoes;
+    ListView listViewAtletas;
     final AppCompatActivity self = this;
-    ListaAvaliacaoAdapter adaptador;
+    ListaAtletaAdapter adaptador;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_avaliacao);
+        setContentView(R.layout.activity_atleta);
+        listViewAtletas = (ListView) findViewById(R.id.lstAtletas);
 
-        listViewAvaliacoes = (ListView) findViewById(R.id.lstAvaliacoes);
+        BancoDados<Atleta> bd =  new BancoDados<Atleta>(this, Atleta.class);
 
-        BancoDados<Avaliacao> bd =  new BancoDados<Avaliacao>(this, Avaliacao.class);
+        adaptador = new ListaAtletaAdapter(getBaseContext(), bd);
+        listViewAtletas.setAdapter(adaptador);
+        registerForContextMenu(listViewAtletas);
 
-        adaptador = new ListaAvaliacaoAdapter(getBaseContext(), bd);
-        listViewAvaliacoes.setAdapter(adaptador);
-        registerForContextMenu(listViewAvaliacoes);
-
-        FloatingActionButton fab = findViewById(R.id.btnNovaAvaliacao);
+        FloatingActionButton fab = findViewById(R.id.btnNovoAtleta);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent it = new Intent(self, CadastrarAvaliacao.class);
+                Intent it = new Intent(self, CadastrarAtleta.class);
                 self.startActivityForResult(it, 1);
                 adaptador.notifyDataSetChanged();
             }
@@ -46,9 +45,9 @@ public class AvaliacaoActivity extends AppCompatActivity {
 
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
-        if (v.getId() == R.id.lstAvaliacoes) {
+        if (v.getId() == R.id.lstAtletas) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
-            menu.setHeaderTitle(((Avaliacao)adaptador.getItem(info.position)).getDescricao());
+            menu.setHeaderTitle(((Atleta)adaptador.getItem(info.position)).getNome());
             menu.add(Menu.NONE, 1, 1, "Editar");
             menu.add(Menu.NONE, 2, 2, "Deletar");
         }
@@ -57,19 +56,19 @@ public class AvaliacaoActivity extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        Avaliacao avaliacao = ((Avaliacao)adaptador.getItem(info.position));
+        Atleta atleta = ((Atleta)adaptador.getItem(info.position));
         switch(item.getItemId()) {
             case 1:
                 // Editar
-                Intent it = new Intent(getBaseContext(), CadastrarAvaliacao.class);
-                it.putExtra("CODIGO", avaliacao.getCodigo());
+                Intent it = new Intent(getBaseContext(), CadastrarAtleta.class);
+                it.putExtra("CODIGO", atleta.getCodigo());
                 startActivityForResult(it, 1010);
                 finish();
                 return true;
             case 2:
                 // Excluir
-                BancoDados<Avaliacao> bd =  new BancoDados<Avaliacao>(this, Avaliacao.class);
-                bd.remover(avaliacao.getCodigo());
+                BancoDados<Atleta> bd =  new BancoDados<Atleta>(this, Atleta.class);
+                bd.remover(atleta.getCodigo());
                 adaptador.notifyDataSetChanged();
                 return true;
             default:

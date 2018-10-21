@@ -45,6 +45,12 @@
         <activity
             android:name=".CadastrarAvaliacao"
             android:label="Cadastrar Avaliação"></activity>
+        <activity
+            android:name=".AtletaActivity"
+            android:label="Atletas"></activity>
+        <activity
+            android:name=".CadastrarAtleta"
+            android:label="Cadastrar Atleta" />
     </application>
 
 </manifest>

@@ -54,11 +54,12 @@ public class ListaAvaliacaoAdapter extends BaseAdapter{
         convertView = inflater.inflate(R.layout.template_avaliacao, null);
 
         TextView txtDescricao = (TextView) convertView.findViewById(R.id.txtAvaliacaoDescricao);
+        TextView txtPosicao = (TextView) convertView.findViewById(R.id.txtAvaliacaoPosicao);
 
         Avaliacao avaliacao = avaliacoes.get(position);
 
         txtDescricao.setText(avaliacao.getDescricao());
+        txtPosicao.setText(avaliacao.getPosicao().getDescricao());
         return convertView;
     }
-
 }

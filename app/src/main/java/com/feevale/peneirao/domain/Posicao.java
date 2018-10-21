@@ -69,4 +69,12 @@ public class Posicao implements IPersistente {
     public String toString() {
         return getDescricao();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null){
+            return getCodigo() == ((Posicao)obj).getCodigo();
+        }
+        return super.equals(obj);
+    }
 }

@@ -2,11 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity_main">
-    <item
-        android:id="@+id/posicao"
-        android:orderInCategory="100"
-        android:title="@string/lblMenuPosicoes"
-        app:showAsAction="never" />
 
     <item
         android:id="@+id/btnClubes"
@@ -15,9 +10,21 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/posicao"
+        android:orderInCategory="100"
+        android:title="@string/lblMenuPosicoes"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/btnAvaliacoes"
         android:orderInCategory="100"
         android:title="Avaliações"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/btnAtletas"
+        android:orderInCategory="100"
+        android:title="Atletas"
         app:showAsAction="never" />
 
 </menu>

@@ -61,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
             this.startActivity(it);
             return true;
         }
+        else if (id == R.id.btnAtletas){
+            Intent it = new Intent(this, AtletaActivity.class);
+            this.startActivity(it);
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

@@ -1,6 +1,7 @@
 package com.feevale.peneirao;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.feevale.peneirao.bd.BancoDados;
 import com.feevale.peneirao.domain.Usuario;
+import com.feevale.peneirao.utils.Preferencias;
 
 import java.util.Objects;
 
@@ -82,6 +84,7 @@ public class Login extends AppCompatActivity {
         Usuario usuario = (Usuario)bd.obter("LOGIN = ? and SENHA = ?", new String[] { login, senha});
         if (usuario != null){
             alerta("Sucesso!");
+            Preferencias.salvarUsuarioLogado(this, usuario.getCodigo());
             Intent it = new Intent(this, MainActivity.class);
             this.startActivity(it);
             txtLogin.setText("");

@@ -90,4 +90,12 @@ public class Usuario implements IPersistente {
             setClube(pResultados.getInt(pResultados.getColumnIndex("CLUBE")));
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null){
+            return getCodigo() == ((Usuario)obj).getCodigo();
+        }
+        return super.equals(obj);
+    }
 }

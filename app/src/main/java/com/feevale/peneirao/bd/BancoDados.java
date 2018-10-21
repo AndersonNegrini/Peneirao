@@ -20,7 +20,7 @@ public class BancoDados<T extends IPersistente> {
         this.ctx = ctx;
         this.tipoClasse = tipoClasse;
         try {
-            dbHelper = new DBHelper(ctx, "Peneirao", null, 22, criarInstancia());
+            dbHelper = new DBHelper(ctx, "Peneirao", null, 23, criarInstancia());
         }
         catch(Exception ex) {
         }
@@ -165,6 +165,7 @@ public class BancoDados<T extends IPersistente> {
             db.execSQL("create table POSICAO (CODIGO integer primary key autoincrement, DESCRICAO text not null unique)");
             db.execSQL("create table CLUBE (CODIGO integer primary key autoincrement, NOME text not null unique, ABREVIACAO text not null unique, IMAGEM blob)");
             db.execSQL("create table AVALIACAO (CODIGO integer primary key autoincrement, DESCRICAO text not null unique, POSICAO integer not null, FOREIGN KEY(POSICAO) REFERENCES POSICAO(CODIGO))");
+            db.execSQL("create table ATLETA (CODIGO integer primary key autoincrement, NOME text not null, ANONASCIMENTO integer, LATERALIDADE text, PROS text, CONTRA text, TELEFONE text, FOTO blob, USUARIO integer not null, POSICAO integer not null, FOREIGN KEY(POSICAO) REFERENCES POSICAO(CODIGO), FOREIGN KEY(USUARIO) REFERENCES USUARIO(CODIGO))");
         }
 
         @Override

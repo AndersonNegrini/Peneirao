@@ -89,4 +89,12 @@ public class Clube implements IPersistente {
     public void setImagem(Bitmap imagem) {
         this.imagem = imagem;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null){
+            return getCodigo() == ((Clube)obj).getCodigo();
+        }
+        return super.equals(obj);
+    }
 }

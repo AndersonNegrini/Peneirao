@@ -77,4 +77,12 @@ public class Avaliacao implements IPersistente {
     public void setPosicao(Posicao posicao) {
         this.posicao = posicao;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj != null){
+            return getCodigo() == ((Avaliacao)obj).getCodigo();
+        }
+        return super.equals(obj);
+    }
 }
