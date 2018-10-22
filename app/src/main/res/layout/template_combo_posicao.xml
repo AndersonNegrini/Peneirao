@@ -5,10 +5,11 @@
     android:weightSum="1">
 
     <TextView
+        android:id="@+id/txtViewDescricao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/txtViewDescricao" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:theme="@style/EditCrudTheme" />
 
 </LinearLayout>

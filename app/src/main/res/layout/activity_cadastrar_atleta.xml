@@ -24,7 +24,7 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/fundo_header_avaliacao" />
+            android:src="@drawable/fundo_header_atleta" />
 
         <EditText
             android:id="@+id/txtCadNomeAtleta"
@@ -43,7 +43,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"
-            android:theme="@style/EditCrudTheme" />
+            />
 
         <EditText
             android:id="@+id/txtCadAnoNascimentoAtleta"
