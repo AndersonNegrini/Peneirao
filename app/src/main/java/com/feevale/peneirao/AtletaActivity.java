@@ -63,7 +63,7 @@ public class AtletaActivity extends AppCompatActivity {
                 Intent it = new Intent(getBaseContext(), CadastrarAtleta.class);
                 it.putExtra("CODIGO", atleta.getCodigo());
                 startActivityForResult(it, 1010);
-                finish();
+                adaptador.notifyDataSetChanged();
                 return true;
             case 2:
                 // Excluir

@@ -64,7 +64,7 @@ public class AvaliacaoActivity extends AppCompatActivity {
                 Intent it = new Intent(getBaseContext(), CadastrarAvaliacao.class);
                 it.putExtra("CODIGO", avaliacao.getCodigo());
                 startActivityForResult(it, 1010);
-                finish();
+                adaptador.notifyDataSetChanged();
                 return true;
             case 2:
                 // Excluir

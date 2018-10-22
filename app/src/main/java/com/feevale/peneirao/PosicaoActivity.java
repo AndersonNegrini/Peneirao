@@ -70,7 +70,7 @@ public class PosicaoActivity extends AppCompatActivity {
                 Intent it = new Intent(getBaseContext(), CadastrarPosicao.class);
                 it.putExtra("CODIGO", posicao.getCodigo());
                 startActivityForResult(it, 1010);
-                finish();
+                adaptador.notifyDataSetChanged();
                 return true;
             case 2:
                 // Excluir

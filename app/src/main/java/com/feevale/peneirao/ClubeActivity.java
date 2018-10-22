@@ -71,7 +71,7 @@ public class ClubeActivity extends AppCompatActivity {
                 Intent it = new Intent(getBaseContext(), CadastrarClube.class);
                 it.putExtra("CODIGO", clube.getCodigo());
                 startActivityForResult(it, 1010);
-                finish();
+                adaptador.notifyDataSetChanged();
                 return true;
             case 2:
                 // Excluir
