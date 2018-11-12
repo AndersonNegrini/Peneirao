@@ -48,6 +48,7 @@ public class CadastrarAtleta extends Activity {
         ArrayAdapter adp = new ArrayAdapter<Posicao>(this, R.layout.spinner_posicao, posicoes);
         adp.setDropDownViewResource(android.R.layout.simple_spinner_item);
         cbPosicao.setAdapter(adp);
+        cbPosicao.setDropDownVerticalOffset(147);
 
         ArrayList<String> opcoesLateralidade = new ArrayList<String>();
         opcoesLateralidade.add("Destro");
@@ -55,6 +56,7 @@ public class CadastrarAtleta extends Activity {
         ArrayAdapter adpLateralidade = new ArrayAdapter<String>(this, R.layout.spinner_lateralidade, opcoesLateralidade);
         adpLateralidade.setDropDownViewResource(android.R.layout.simple_spinner_item);
         cbLateralidade.setAdapter(adpLateralidade);
+        cbLateralidade.setDropDownVerticalOffset(147);
 
         Intent it = getIntent();
         int codigo = it.getIntExtra("CODIGO", 0);
