@@ -76,7 +76,7 @@ public class ClubeActivity extends AppCompatActivity {
             case 2:
                 // Excluir
                 BancoDados<Clube> bd =  new BancoDados<Clube>(this, Clube.class);
-                bd.remover(clube.getCodigo());
+                bd.remover(clube);
                 adaptador.notifyDataSetChanged();
                 return true;
             default:

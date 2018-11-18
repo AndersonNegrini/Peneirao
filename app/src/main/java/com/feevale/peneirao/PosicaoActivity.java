@@ -75,7 +75,7 @@ public class PosicaoActivity extends AppCompatActivity {
             case 2:
                 // Excluir
                 BancoDados<Posicao> bd =  new BancoDados<Posicao>(this, Posicao.class);
-                bd.remover(posicao.getCodigo());
+                bd.remover(posicao);
                 adaptador.notifyDataSetChanged();
                 return true;
             default:

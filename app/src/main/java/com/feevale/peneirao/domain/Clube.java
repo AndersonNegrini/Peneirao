@@ -56,6 +56,16 @@ public class Clube implements IPersistente {
     }
 
     @Override
+    public boolean validarExclusao(Context ctx) {
+        return true;
+    }
+
+    @Override
+    public String obterErros() {
+        return null;
+    }
+
+    @Override
     public int getCodigo() {
         return codigo;
     }

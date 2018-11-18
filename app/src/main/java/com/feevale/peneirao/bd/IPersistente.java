@@ -13,4 +13,7 @@ public interface IPersistente {
     int getCodigo();
     void setCodigo(int codigo);
     String getNomeTabela();
+
+    boolean validarExclusao(Context ctx);
+    String obterErros();
 }

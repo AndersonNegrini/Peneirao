@@ -69,7 +69,7 @@ public class AvaliacaoActivity extends AppCompatActivity {
             case 2:
                 // Excluir
                 BancoDados<Avaliacao> bd =  new BancoDados<Avaliacao>(this, Avaliacao.class);
-                bd.remover(avaliacao.getCodigo());
+                bd.remover(avaliacao);
                 adaptador.notifyDataSetChanged();
                 return true;
             default:

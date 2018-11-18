@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class BancoDados<T extends IPersistente> {
         this.ctx = ctx;
         this.tipoClasse = tipoClasse;
         try {
-            dbHelper = new DBHelper(ctx, "Peneirao", null, 23, criarInstancia());
+            dbHelper = new DBHelper(ctx, "Peneirao", null, 27, criarInstancia());
         }
         catch(Exception ex) {
         }
@@ -90,11 +91,15 @@ public class BancoDados<T extends IPersistente> {
         }
     }
     public ArrayList<T> obter() {
+        return obterFiltrado(null, null);
+    }
+
+    public ArrayList<T> obterFiltrado(String pFiltro, String[] pValores) {
         try {
             abrir();
             ArrayList<T> lista = new ArrayList<T>();
             T persistente = criarInstancia();
-            Cursor resultados = db.query(persistente.getNomeTabela(), persistente.colunas(), null, null, null, null, "CODIGO");
+            Cursor resultados = db.query(persistente.getNomeTabela(), persistente.colunas(), pFiltro, pValores, null, null, "CODIGO");
             if (resultados != null && resultados.getCount() > 0) {
                 resultados.moveToFirst();
                 do {
@@ -119,7 +124,7 @@ public class BancoDados<T extends IPersistente> {
         return result;
     }
 
-    public int removerTodos() {
+    /*public int removerTodos() {
         try {
             abrir();
             T persistente = criarInstancia();
@@ -130,13 +135,18 @@ public class BancoDados<T extends IPersistente> {
         catch (Exception ex) {
             return -1;
         }
-    }
+    }*/
 
-    public int remover(int pCodigo) {
+    public int remover(IPersistente pPersistente) {
         try {
             abrir();
-            T persistente = criarInstancia();
-            int result = db.delete(persistente.getNomeTabela(), "CODIGO = " + pCodigo, null);
+            int result = 0;
+            if (pPersistente.validarExclusao(ctx)) {
+                result = db.delete(pPersistente.getNomeTabela(), "CODIGO = " + pPersistente.getCodigo(), null);
+            }
+            else{
+                Toast.makeText(ctx, pPersistente.obterErros(), Toast.LENGTH_LONG).show();
+            }
             fechar();
             return result;
         }
@@ -166,6 +176,7 @@ public class BancoDados<T extends IPersistente> {
             db.execSQL("create table CLUBE (CODIGO integer primary key autoincrement, NOME text not null unique, ABREVIACAO text not null unique, IMAGEM blob)");
             db.execSQL("create table AVALIACAO (CODIGO integer primary key autoincrement, DESCRICAO text not null unique, POSICAO integer not null, FOREIGN KEY(POSICAO) REFERENCES POSICAO(CODIGO))");
             db.execSQL("create table ATLETA (CODIGO integer primary key autoincrement, NOME text not null, ANONASCIMENTO integer, LATERALIDADE text, PROS text, CONTRA text, TELEFONE text, FOTO blob, USUARIO integer not null, POSICAO integer not null, FOREIGN KEY(POSICAO) REFERENCES POSICAO(CODIGO), FOREIGN KEY(USUARIO) REFERENCES USUARIO(CODIGO))");
+            db.execSQL("create table AVALIACAOATLETA (CODIGO integer primary key autoincrement, AVALIACAO integer not null, ATLETA integer not null, NOTA float, FOREIGN KEY(AVALIACAO) REFERENCES AVALIACAO(CODIGO), FOREIGN KEY(ATLETA) REFERENCES ATLETA(CODIGO))");
         }
 
         @Override
@@ -176,6 +187,8 @@ public class BancoDados<T extends IPersistente> {
             db.execSQL("DROP TABLE IF EXISTS POSICAO");
             db.execSQL("DROP TABLE IF EXISTS CLUBE");
             db.execSQL("DROP TABLE IF EXISTS AVALIACAO");
+            db.execSQL("DROP TABLE IF EXISTS ATLETA");
+            db.execSQL("DROP TABLE IF EXISTS AVALIACAOATLETA");
             onCreate(db);
         }
 

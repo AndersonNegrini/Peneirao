@@ -100,6 +100,16 @@ public class Atleta implements IPersistente {
         return "ATLETA";
     }
 
+    @Override
+    public boolean validarExclusao(Context ctx) {
+        return true;
+    }
+
+    @Override
+    public String obterErros() {
+        return null;
+    }
+
     public String getNome() {
         return nome;
     }

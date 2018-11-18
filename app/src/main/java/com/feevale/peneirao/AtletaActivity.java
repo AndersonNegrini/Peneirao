@@ -48,8 +48,9 @@ public class AtletaActivity extends AppCompatActivity {
         if (v.getId() == R.id.lstAtletas) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
             menu.setHeaderTitle(((Atleta)adaptador.getItem(info.position)).getNome());
-            menu.add(Menu.NONE, 1, 1, "Editar");
-            menu.add(Menu.NONE, 2, 2, "Deletar");
+            menu.add(Menu.NONE, 1, 1, "Avaliar");
+            menu.add(Menu.NONE, 2, 2, "Editar");
+            menu.add(Menu.NONE, 3, 3, "Deletar");
         }
     }
 
@@ -59,16 +60,23 @@ public class AtletaActivity extends AppCompatActivity {
         Atleta atleta = ((Atleta)adaptador.getItem(info.position));
         switch(item.getItemId()) {
             case 1:
+                // Avaliar
+                Intent itAvaliar = new Intent(getBaseContext(), AvaliarAtleta.class);
+                itAvaliar.putExtra("CODIGO", atleta.getCodigo());
+                startActivityForResult(itAvaliar, 1010);
+                adaptador.notifyDataSetChanged();
+                return true;
+            case 2:
                 // Editar
                 Intent it = new Intent(getBaseContext(), CadastrarAtleta.class);
                 it.putExtra("CODIGO", atleta.getCodigo());
                 startActivityForResult(it, 1010);
                 adaptador.notifyDataSetChanged();
                 return true;
-            case 2:
+            case 3:
                 // Excluir
                 BancoDados<Atleta> bd =  new BancoDados<Atleta>(this, Atleta.class);
-                bd.remover(atleta.getCodigo());
+                bd.remover(atleta);
                 adaptador.notifyDataSetChanged();
                 return true;
             default:
