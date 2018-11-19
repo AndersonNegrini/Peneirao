@@ -64,7 +64,6 @@ public class AvaliacaoActivity extends AppCompatActivity {
                 Intent it = new Intent(getBaseContext(), CadastrarAvaliacao.class);
                 it.putExtra("CODIGO", avaliacao.getCodigo());
                 startActivityForResult(it, 1010);
-                adaptador.notifyDataSetChanged();
                 return true;
             case 2:
                 // Excluir
@@ -75,5 +74,11 @@ public class AvaliacaoActivity extends AppCompatActivity {
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        adaptador.notifyDataSetChanged();
     }
 }

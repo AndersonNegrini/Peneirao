@@ -64,14 +64,12 @@ public class AtletaActivity extends AppCompatActivity {
                 Intent itAvaliar = new Intent(getBaseContext(), AvaliarAtleta.class);
                 itAvaliar.putExtra("CODIGO", atleta.getCodigo());
                 startActivityForResult(itAvaliar, 1010);
-                adaptador.notifyDataSetChanged();
                 return true;
             case 2:
                 // Editar
                 Intent it = new Intent(getBaseContext(), CadastrarAtleta.class);
                 it.putExtra("CODIGO", atleta.getCodigo());
                 startActivityForResult(it, 1010);
-                adaptador.notifyDataSetChanged();
                 return true;
             case 3:
                 // Excluir
@@ -82,5 +80,11 @@ public class AtletaActivity extends AppCompatActivity {
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        adaptador.notifyDataSetChanged();
     }
 }

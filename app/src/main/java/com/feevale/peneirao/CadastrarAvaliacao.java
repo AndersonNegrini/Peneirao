@@ -57,8 +57,6 @@ public class CadastrarAvaliacao extends Activity {
             avaliacao.setPosicao((Posicao)posicao);
             if (avaliacao.getCodigo() > 0){
                 bd.editar(avaliacao);
-                Intent it = new Intent(this, AvaliacaoActivity.class);
-                this.startActivity(it);
             }
             else {
                 int resultado = bd.inserir(avaliacao);

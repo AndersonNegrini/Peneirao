@@ -39,8 +39,6 @@ public class CadastrarPosicao extends Activity {
             posicao.setDescricao(txtPosicao);
             if (posicao.getCodigo() > 0){
                 bd.editar(posicao);
-                Intent it = new Intent(this, PosicaoActivity.class);
-                this.startActivity(it);
             }
             else {
                 int resultado = bd.inserir(posicao);
