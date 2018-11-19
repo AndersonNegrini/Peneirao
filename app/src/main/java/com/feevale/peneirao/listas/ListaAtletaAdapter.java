@@ -10,7 +10,9 @@ import android.widget.TextView;
 import com.feevale.peneirao.R;
 import com.feevale.peneirao.bd.BancoDados;
 import com.feevale.peneirao.domain.Atleta;
+import com.feevale.peneirao.domain.AvaliacaoAtleta;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListaAtletaAdapter  extends BaseAdapter {
@@ -55,11 +57,23 @@ public class ListaAtletaAdapter  extends BaseAdapter {
 
         TextView txtNome = (TextView) convertView.findViewById(R.id.txtTempNomeAtleta);
         TextView txtPosicao = (TextView) convertView.findViewById(R.id.txtTempPosicaoAtleta);
+        TextView txtMedia = (TextView) convertView.findViewById(R.id.txtMedia);
 
         Atleta atleta = atletas.get(position);
 
         txtNome.setText(atleta.getNome());
         txtPosicao.setText(atleta.getPosicao().getDescricao());
+
+        BancoDados<AvaliacaoAtleta> bdAvaliacaoAtleta = new BancoDados<AvaliacaoAtleta>(ctx, AvaliacaoAtleta.class);
+        ArrayList<AvaliacaoAtleta> avaliacoesFeitas = bdAvaliacaoAtleta.obterFiltrado("ATLETA = ?", new String[] { String.valueOf(atleta.getCodigo()) });
+        float media = 0;
+        for (AvaliacaoAtleta av: avaliacoesFeitas) {
+            media += av.getNota();
+        }
+        if (avaliacoesFeitas.size() > 0){
+            media /= avaliacoesFeitas.size();
+        }
+        txtMedia.setText(String.valueOf(media));
 
         return convertView;
     }

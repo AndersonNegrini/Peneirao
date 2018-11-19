@@ -60,8 +60,6 @@ public class CadastrarClube  extends Activity {
             clube.setImagem(imagem);
             if (clube.getCodigo() > 0){
                 bd.editar(clube);
-                Intent it = new Intent(this, ClubeActivity.class);
-                this.startActivity(it);
             }
             else {
                 int resultado = bd.inserir(clube);

@@ -103,8 +103,6 @@ public class CadastrarAtleta extends Activity {
             atleta.setUsuario(Preferencias.obterUsuarioLogado(this));
             if (atleta.getCodigo() > 0) {
                 bd.editar(atleta);
-                Intent it = new Intent(this, AtletaActivity.class);
-                this.startActivity(it);
             } else {
                 int resultado = bd.inserir(atleta);
                 if (resultado == -1) {
