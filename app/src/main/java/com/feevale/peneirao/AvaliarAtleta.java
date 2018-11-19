@@ -1,7 +1,10 @@
 package com.feevale.peneirao;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -69,7 +72,9 @@ public class AvaliarAtleta extends AppCompatActivity {
                 rb.setRating(af.getNota());
                 rb.setNumStars(5);
                 rb.setLayoutParams(params);
-                rb.setBackgroundColor(Color.parseColor("#2d2d2d"));
+                //rb.setBackgroundColor(Color.parseColor("#2d2d2d"));
+                LayerDrawable stars = (LayerDrawable) rb.getProgressDrawable();
+                stars.getDrawable(0).setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
                 l.addView(rb);
                 ratingBars.add(rb);
             }
