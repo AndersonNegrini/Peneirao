@@ -2,30 +2,48 @@ package com.feevale.peneirao;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
+
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    PieChart grafico;
+
+    float itensGrafico[] = {12f, 9f, 15f, 8f, 2f};
+    String descricao[] = {"Meia", "Atacante", "Volante", "Zagueiro", "Lateral"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        grafico = (PieChart) findViewById(R.id.graficoID);
+
+        List<PieEntry> entradasGrafico = new ArrayList<>();
+
+        for (int i=0; i < itensGrafico.length; i++){
+            entradasGrafico.add(new PieEntry(itensGrafico[i], descricao[i]));
+
+        }
+
+        PieDataSet dataSet = new PieDataSet(entradasGrafico, "Posições mais avaliadas");
+        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
+        PieData pieData = new PieData(dataSet);
+        grafico.animateY(1300);
+        grafico.setData(pieData);
+
+        grafico.invalidate();
     }
 
     @Override

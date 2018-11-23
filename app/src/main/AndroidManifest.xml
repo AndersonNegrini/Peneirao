@@ -38,16 +38,16 @@
             android:label="@string/title_activity_clube" />
         <activity
             android:name=".CadastrarClube"
-            android:label="@string/title_activity_cadastrar_clube"></activity>
+            android:label="@string/title_activity_cadastrar_clube" />
         <activity
             android:name=".AvaliacaoActivity"
-            android:label="Avaliação"></activity>
+            android:label="Avaliação" />
         <activity
             android:name=".CadastrarAvaliacao"
-            android:label="Cadastrar Avaliação"></activity>
+            android:label="Cadastrar Avaliação" />
         <activity
             android:name=".AtletaActivity"
-            android:label="Atletas"></activity>
+            android:label="Atletas" />
         <activity
             android:name=".CadastrarAtleta"
             android:label="Cadastrar Atleta" />
