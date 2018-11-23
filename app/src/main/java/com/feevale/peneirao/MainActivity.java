@@ -1,6 +1,7 @@
 package com.feevale.peneirao;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         PieData pieData = new PieData(dataSet);
         grafico.animateY(1300);
+        grafico.setBackgroundColor(Color.BLACK);
         grafico.setData(pieData);
 
         grafico.invalidate();
