@@ -69,21 +69,21 @@ public class ListaMelhoresAtletasAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        ObterMelhoresAtletas();
+        //ObterMelhoresAtletas();
         return atletas.size();
     }
 
     @Override
     public Object getItem(int position) {
         // TODO Auto-generated method stub
-        ObterMelhoresAtletas();
+        //ObterMelhoresAtletas();
         return atletas.get(position);
     }
 
     @Override
     public long getItemId(int position) {
         // TODO Auto-generated method stub
-        ObterMelhoresAtletas();
+        //ObterMelhoresAtletas();
         return atletas.size() == 0 ? (long)0 : atletas.get(position).getCodigo();
     }
 

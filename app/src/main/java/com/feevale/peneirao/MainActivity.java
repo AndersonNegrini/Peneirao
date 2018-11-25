@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.AutoText;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -49,17 +50,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void DesenharGrafico(){
         List<PieEntry> entradasGrafico = new ArrayList<>();
-        BancoDados<AvaliacaoAtleta> bdAvaliacoes = new BancoDados<AvaliacaoAtleta>(this, AvaliacaoAtleta.class);
-        ArrayList<AvaliacaoAtleta> avaliacoes = bdAvaliacoes.obter();
+        BancoDados<Atleta> bdAtletas = new BancoDados<Atleta>(this, Atleta.class);
+        ArrayList<Atleta> atletas = bdAtletas.obter();
         Map<String, Integer> map = new HashMap<String, Integer>();
-        for (AvaliacaoAtleta av: avaliacoes) {
-            if (map.containsKey(av.getAvaliacao().getPosicao().getDescricao())){
-                Integer n = map.get(av.getAvaliacao().getPosicao().getDescricao());
-                map.remove(av.getAvaliacao().getPosicao().getDescricao());
-                map.put(av.getAvaliacao().getPosicao().getDescricao(), ++n);
+        for (Atleta at: atletas) {
+            if (map.containsKey(at.getPosicao().getDescricao())){
+                Integer n = map.get(at.getPosicao().getDescricao());
+                map.remove(at.getPosicao().getDescricao());
+                map.put(at.getPosicao().getDescricao(), ++n);
             }
             else{
-                map.put(av.getAvaliacao().getPosicao().getDescricao(), 1);
+                map.put(at.getPosicao().getDescricao(), 1);
             }
         }
 
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         legend.setOrientation(Legend.LegendOrientation.VERTICAL);
         legend.setTextColor(Color.WHITE);
-        grafico.setCenterText("Posições mais avaliadas");
+        grafico.setCenterText("Atletas por posição");
         grafico.animateY(1300);
         grafico.setBackgroundColor(Color.BLACK);
         grafico.setData(pieData);
