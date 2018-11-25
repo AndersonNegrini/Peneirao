@@ -15,6 +15,7 @@ import com.feevale.peneirao.domain.AvaliacaoAtleta;
 import com.feevale.peneirao.listas.ListaAtletaAdapter;
 import com.feevale.peneirao.listas.ListaMelhoresAtletasAdapter;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -66,10 +67,16 @@ public class MainActivity extends AppCompatActivity {
             entradasGrafico.add(new PieEntry(entry.getValue(), entry.getKey()));
         }
 
-        PieDataSet dataSet = new PieDataSet(entradasGrafico, "Posições mais avaliadas");
+        PieDataSet dataSet = new PieDataSet(entradasGrafico, "");
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
 
         PieData pieData = new PieData(dataSet);
+        Legend legend = grafico.getLegend();
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        legend.setOrientation(Legend.LegendOrientation.VERTICAL);
+        legend.setTextColor(Color.WHITE);
+        grafico.setCenterText("Posições mais avaliadas");
         grafico.animateY(1300);
         grafico.setBackgroundColor(Color.BLACK);
         grafico.setData(pieData);
