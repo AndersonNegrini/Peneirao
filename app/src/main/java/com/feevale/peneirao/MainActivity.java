@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.feevale.peneirao.bd.BancoDados;
+import com.feevale.peneirao.domain.Avaliacao;
+import com.feevale.peneirao.domain.AvaliacaoAtleta;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -14,7 +17,11 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,12 +36,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         grafico = (PieChart) findViewById(R.id.graficoID);
+        DesenharGrafico();
+    }
 
+    private void DesenharGrafico(){
         List<PieEntry> entradasGrafico = new ArrayList<>();
+        BancoDados<AvaliacaoAtleta> bdAvaliacoes = new BancoDados<AvaliacaoAtleta>(this, AvaliacaoAtleta.class);
+        ArrayList<AvaliacaoAtleta> avaliacoes = bdAvaliacoes.obter();
+        Map<String, Integer> map = new HashMap<String, Integer>();
+        for (AvaliacaoAtleta av: avaliacoes) {
+            if (map.containsKey(av.getAvaliacao().getPosicao().getDescricao())){
+                Integer n = map.get(av.getAvaliacao().getPosicao().getDescricao());
+                map.remove(av.getAvaliacao().getPosicao().getDescricao());
+                map.put(av.getAvaliacao().getPosicao().getDescricao(), ++n);
+            }
+            else{
+                map.put(av.getAvaliacao().getPosicao().getDescricao(), 1);
+            }
+        }
 
-        for (int i=0; i < itensGrafico.length; i++){
-            entradasGrafico.add(new PieEntry(itensGrafico[i], descricao[i]));
-
+        for(Map.Entry<String, Integer> entry : map.entrySet()) {
+            entradasGrafico.add(new PieEntry(entry.getValue(), entry.getKey()));
         }
 
         PieDataSet dataSet = new PieDataSet(entradasGrafico, "Posições mais avaliadas");
@@ -44,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         grafico.animateY(1300);
         grafico.setBackgroundColor(Color.BLACK);
         grafico.setData(pieData);
-
         grafico.invalidate();
     }
 
@@ -56,7 +77,11 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DesenharGrafico();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
