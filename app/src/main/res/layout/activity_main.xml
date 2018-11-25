@@ -4,12 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBackground"
     tools:context=".MainActivity">
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/graficoID"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:paddingBottom="5dp"
+            android:text="Melhores Atletas"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorEdit" />
+
+        <include layout="@layout/content_melhoresatletas"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="Posições mais avaliadas"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorEdit" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/graficoID"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

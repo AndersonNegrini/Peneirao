@@ -6,10 +6,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import com.feevale.peneirao.bd.BancoDados;
+import com.feevale.peneirao.domain.Atleta;
 import com.feevale.peneirao.domain.Avaliacao;
 import com.feevale.peneirao.domain.AvaliacaoAtleta;
+import com.feevale.peneirao.listas.ListaAtletaAdapter;
+import com.feevale.peneirao.listas.ListaMelhoresAtletasAdapter;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -26,6 +30,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     PieChart grafico;
+    ListView listViewMelhoresAtletas;
+    ListaMelhoresAtletasAdapter adaptador;
 
     float itensGrafico[] = {12f, 9f, 15f, 8f, 2f};
     String descricao[] = {"Meia", "Atacante", "Volante", "Zagueiro", "Lateral"};
@@ -37,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         grafico = (PieChart) findViewById(R.id.graficoID);
         DesenharGrafico();
+        DesenharMelhoresAtletas();
     }
 
     private void DesenharGrafico(){
@@ -68,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
         grafico.setData(pieData);
         grafico.invalidate();
     }
+    private void DesenharMelhoresAtletas(){
+        listViewMelhoresAtletas = (ListView) findViewById(R.id.lstMelhoresAtletas);
+        BancoDados<Atleta> bd =  new BancoDados<Atleta>(this, Atleta.class);
+        adaptador = new ListaMelhoresAtletasAdapter(getBaseContext(), bd);
+        listViewMelhoresAtletas.setAdapter(adaptador);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         DesenharGrafico();
+        adaptador.notifyDataSetChanged();
     }
 
     @Override
