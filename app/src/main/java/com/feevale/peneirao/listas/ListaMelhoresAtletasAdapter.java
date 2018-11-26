@@ -1,6 +1,7 @@
 package com.feevale.peneirao.listas;
 
 import android.content.Context;
+import android.text.AutoText;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ public class ListaMelhoresAtletasAdapter extends BaseAdapter {
         this.ctx = ctx;
         this.db = db;
         //atletas = db.obter();
+        //atletas = new ArrayList<Atleta>();
         ObterMelhoresAtletas();
     }
 
@@ -69,21 +71,21 @@ public class ListaMelhoresAtletasAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        //ObterMelhoresAtletas();
+        ObterMelhoresAtletas();
         return atletas.size();
     }
 
     @Override
     public Object getItem(int position) {
         // TODO Auto-generated method stub
-        //ObterMelhoresAtletas();
+        ObterMelhoresAtletas();
         return atletas.get(position);
     }
 
     @Override
     public long getItemId(int position) {
         // TODO Auto-generated method stub
-        //ObterMelhoresAtletas();
+        ObterMelhoresAtletas();
         return atletas.size() == 0 ? (long)0 : atletas.get(position).getCodigo();
     }
 
@@ -102,6 +104,7 @@ public class ListaMelhoresAtletasAdapter extends BaseAdapter {
         txtNome.setText(atleta.getNome());
         txtPosicao.setText(atleta.getPosicao().getDescricao());
 
+        /*
         BancoDados<AvaliacaoAtleta> bdAvaliacaoAtleta = new BancoDados<AvaliacaoAtleta>(ctx, AvaliacaoAtleta.class);
         ArrayList<AvaliacaoAtleta> avaliacoesFeitas = bdAvaliacaoAtleta.obterFiltrado("ATLETA = ?", new String[] { String.valueOf(atleta.getCodigo()) });
         float media = 0;
@@ -111,7 +114,8 @@ public class ListaMelhoresAtletasAdapter extends BaseAdapter {
         if (avaliacoesFeitas.size() > 0){
             media /= avaliacoesFeitas.size();
         }
-        txtMedia.setText(String.valueOf(media));
+        */
+        txtMedia.setText(String.valueOf(atleta.getMedia()));
         return convertView;
     }
 }

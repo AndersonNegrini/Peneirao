@@ -64,6 +64,7 @@ public class ListaAtletaAdapter  extends BaseAdapter {
         txtNome.setText(atleta.getNome());
         txtPosicao.setText(atleta.getPosicao().getDescricao());
 
+        /*
         BancoDados<AvaliacaoAtleta> bdAvaliacaoAtleta = new BancoDados<AvaliacaoAtleta>(ctx, AvaliacaoAtleta.class);
         ArrayList<AvaliacaoAtleta> avaliacoesFeitas = bdAvaliacaoAtleta.obterFiltrado("ATLETA = ?", new String[] { String.valueOf(atleta.getCodigo()) });
         float media = 0;
@@ -73,7 +74,8 @@ public class ListaAtletaAdapter  extends BaseAdapter {
         if (avaliacoesFeitas.size() > 0){
             media /= avaliacoesFeitas.size();
         }
-        txtMedia.setText(String.valueOf(media));
+        */
+        txtMedia.setText(String.valueOf(atleta.getMedia()));
 
         return convertView;
     }

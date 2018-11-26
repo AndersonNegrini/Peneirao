@@ -35,10 +35,10 @@ public class AvaliarAtleta extends AppCompatActivity {
         int codigo = it.getIntExtra("CODIGO", 0);
         if (codigo > 0) {
             BancoDados<Atleta> bd = new BancoDados<Atleta>(this, Atleta.class);
-            Atleta atleta = (Atleta) bd.obter(codigo);
+            final Atleta atleta = (Atleta) bd.obter(codigo);
 
             BancoDados<Avaliacao> bdAvaliacao = new BancoDados<Avaliacao>(this, Avaliacao.class);
-            ArrayList<Avaliacao> avaliacoesDisponiveis = bdAvaliacao.obterFiltrado("POSICAO = ?", new String[] { String.valueOf(atleta.getPosicao().getCodigo()) });
+            ArrayList<Avaliacao> avaliacoesDisponiveis = bdAvaliacao.obterFiltrado("POSICAO = ?", new String[] { String.valueOf(atleta.getCodigoPosicao()) });
 
             final BancoDados<AvaliacaoAtleta> bdAvaliacaoAtleta = new BancoDados<AvaliacaoAtleta>(this, AvaliacaoAtleta.class);
             avaliacoesFeitas = bdAvaliacaoAtleta.obterFiltrado("ATLETA = ?", new String[] { String.valueOf(atleta.getCodigo()) });
@@ -46,7 +46,7 @@ public class AvaliarAtleta extends AppCompatActivity {
             for(Avaliacao av : avaliacoesDisponiveis){
                 AvaliacaoAtleta avAtleta = null;
                 for(AvaliacaoAtleta af : avaliacoesFeitas) {
-                    if (av.getCodigo() == af.getAvaliacao().getCodigo()){
+                    if (av.getCodigo() == af.getCodigoAvaliacao()){
                         avAtleta=af;
                         break;
                     }

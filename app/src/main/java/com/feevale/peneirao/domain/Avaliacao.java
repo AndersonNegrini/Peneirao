@@ -10,17 +10,19 @@ import com.feevale.peneirao.bd.IPersistente;
 public class Avaliacao implements IPersistente {
     private int codigo;
     private String descricao;
+    private int codigoPosicao;
     private Posicao posicao;
+    BancoDados<Posicao> bd;
 
     public Avaliacao(){
-
+        codigoPosicao = 0;
     }
 
     @Override
     public ContentValues inserir() {
         ContentValues valores = new ContentValues();
         valores.put("DESCRICAO", getDescricao());
-        valores.put("POSICAO", posicao != null ? posicao.getCodigo() : null);
+        valores.put("POSICAO", codigoPosicao != 0 ? codigoPosicao : null);
         return valores;
     }
 
@@ -28,7 +30,7 @@ public class Avaliacao implements IPersistente {
     public ContentValues editar() {
         ContentValues valores = new ContentValues();
         valores.put("DESCRICAO", getDescricao());
-        valores.put("POSICAO", posicao != null ? posicao.getCodigo() : null);
+        valores.put("POSICAO", codigoPosicao != 0 ? codigoPosicao : null);
         return valores;
     }
 
@@ -43,10 +45,8 @@ public class Avaliacao implements IPersistente {
         if (pResultados != null) {
             setCodigo(pResultados.getInt(pResultados.getColumnIndex("CODIGO")));
             setDescricao(pResultados.getString(pResultados.getColumnIndex("DESCRICAO")));
-            int codigoPosicao = pResultados.getInt(pResultados.getColumnIndex("POSICAO"));
-            BancoDados<Posicao> bd = new BancoDados<Posicao>(pContext, Posicao.class);
-            IPersistente p = bd.obter(codigoPosicao);
-            setPosicao(p != null ? (Posicao)p : null);
+            codigoPosicao = pResultados.getInt(pResultados.getColumnIndex("POSICAO"));
+            bd = new BancoDados<Posicao>(pContext, Posicao.class);
         }
     }
 
@@ -82,9 +82,20 @@ public class Avaliacao implements IPersistente {
     }
 
     public Posicao getPosicao() {
+        if (posicao == null && codigoPosicao != 0){
+            IPersistente p = bd.obter(codigoPosicao);
+            setPosicao(p != null ? (Posicao)p : null);
+            bd = null;
+        }
         return posicao;
     }
     public void setPosicao(Posicao posicao) {
+        if (posicao != null){
+            codigoPosicao=posicao.getCodigo();
+        }
+        else{
+            codigoPosicao = 0;
+        }
         this.posicao = posicao;
     }
 
